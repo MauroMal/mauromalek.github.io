@@ -176,6 +176,9 @@ section {
   margin: auto 0;
 }
 
+.profile-pic{
+  border-radius: 2rem;
+}
 
 
 .section__text {
