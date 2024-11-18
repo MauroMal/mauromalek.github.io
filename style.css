@@ -150,7 +150,7 @@ a:hover {
 
 section {
   padding-top: 4vh;
-  height: wrap;
+  height: 90vh;
   margin: 0 10rem;
   box-sizing: border-box;
   min-height: fit-content;
@@ -427,7 +427,7 @@ article .icon {
 /* FOOTER SECTION */
 
 footer {
-  height: wrap;
+  height: 26vh;
   margin: 0 1rem;
 }
 
