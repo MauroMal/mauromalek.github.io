@@ -160,6 +160,20 @@ section {
   display: flex;
 }
 
+.arrow-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  padding-bottom: 1rem;
+}
+
+.arrow {
+  position: relative; /* was absolute, which caused overflow issues */
+  right: unset;
+  bottom: unset;
+}
+
+
 /* PROFILE SECTION */
 
 #profile {
@@ -271,6 +285,14 @@ section {
   position: relative;
 }
 
+#about .section-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+}
+
 .about-containers {
   gap: 2rem;
   margin-bottom: 2rem;
@@ -278,8 +300,18 @@ section {
 }
 
 .about-details-container {
-  justify-content: center;
+  display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center; /* <-- this line centers children horizontally */
+}
+
+
+.text-container p {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .about-containers,
@@ -302,10 +334,10 @@ section {
   flex: 1;
   background: white;
   border-radius: 2rem;
-  border: rgb(53, 53, 53) 0.1rem solid;
-  border-color: rgb(163, 163, 163);
+  border: 0.1rem solid rgb(53, 53, 53); /* keep this for the visible line */
   text-align: center;
 }
+
 
 .section-container {
   gap: 4rem;
@@ -324,6 +356,11 @@ section {
   position: relative;
 }
 
+#experience .about-containers {
+  flex-direction: column;
+  align-items: center;
+}
+
 .experience-sub-title {
   color: rgb(85, 85, 85);
   font-weight: 600;
@@ -333,9 +370,11 @@ section {
 
 .experience-details-container {
   display: flex;
-  justify-content: center;
-  flex-direction: column;
+  flex-direction: column;    /* stack vertically */
+  align-items: center;       /* center each card */
+  gap: 2rem;                 /* spacing between cards */
 }
+
 
 .article-container {
   display: flex;
@@ -361,6 +400,18 @@ article .icon {
 
 #projects {
   position: relative;
+}
+
+#projects .experience-details-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+#projects .about-containers {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
 }
 
 .color-container {
