@@ -9,14 +9,10 @@
   <meta name="keywords" content="Mauro Malek, computer science, portfolio, data science, machine learning, cybersecurity, software developer" />
   <meta name="author" content="Mauro Malekshamran" />
 
-    <!-- Favicons
-    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
-    <meta name="theme-color" content="#0b0b0c"> -->
+<style>
+    /* Pixel font for retro mode */
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-  <style>
     :root {
       /* Theme variables default to dark */
       --bg: #0b0b0c;
@@ -36,7 +32,7 @@
       --page-pad: 24px;     /* page side padding */
       --gutter: 22px;       /* gaps between cards */
       --section-pad: 68px;  /* vertical spacing per section */
-      --portrait-y: 45%;    /* adjust visible focus hero image (higher value moves image down) */
+      --portrait-y: 45%;    /* focus of hero image */
     }
 
     /* Light theme overrides */
@@ -56,7 +52,7 @@
     html::-webkit-scrollbar { width: 0; height: 0; display: none; }
     body {
       margin: 0;
-      background: var(--bg); /* remove global bluish/green bg tints */
+      background: var(--bg); /* remove tints */
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       line-height: 1.5;
@@ -76,15 +72,18 @@
     .nav { position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(140%) blur(14px); background: linear-gradient(to bottom, rgba(10,10,11,0.6), rgba(10,10,11,0.25)); border-bottom: 1px solid rgba(255,255,255,0.06); }
     [data-theme="light"] .nav { background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.4)); border-bottom-color: rgba(0,0,0,0.06); }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .actions { display:flex; gap:10px; align-items:center; }
     .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; letter-spacing: 0.2px; }
     .brand-avatar { width: 36px; height: 36px; border-radius: 50%; overflow: hidden; box-shadow: var(--shadow-tiny); }
+    .brand-avatar img{ width:100%; height:100%; display:block; object-fit:cover; object-position:50% 50%; }
     .brand span { font-size: 15px; }
-    /* Center pic crop in the circle */
-    .brand-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 38%; }
-
+    /* 8‑bit sprite near btop */
     .toggle { display: inline-grid; place-items: center; width: 40px; height: 40px; padding: 0; border-radius: 12px; background: var(--panel); border: 1px solid rgba(255,255,255,0.12); cursor: pointer; user-select: none; transition: 200ms ease; line-height: 0; color: #ffffff; }
     .toggle:hover { background: var(--panel-strong); transform: translateY(-1px); }
     .toggle svg { width: 18px; height: 18px; display: block; }
+    /* move pixel icon down a bit so its centered */
+    .toggle.pixel svg{ transform: translateY(1.5px); }
+    [data-theme="light"] .toggle { border-color: rgba(0,0,0,0.12); color: #111215; }
     [data-theme="light"] .toggle { border-color: rgba(0,0,0,0.12); color: #111215; }
     [data-theme="light"] .toggle { border-color: rgba(0,0,0,0.12); }
     .toggle:hover { background: var(--panel-strong); transform: translateY(-1px); }
@@ -92,7 +91,7 @@
 
     /* Hero */
     .hero { padding: 84px 0 44px; }
-    .hero.wrap { padding-left: var(--page-pad); padding-right: var(--page-pad); } /* same side padding as other sections */
+    .hero.wrap { padding-left: var(--page-pad); padding-right: var(--page-pad); } /* Same side padding as other sections */
     .hero-inner { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,0.8fr); gap: var(--gutter); align-items: center; }
     .title { font-size: clamp(32px, 6vw, 56px); line-height: 1.08; letter-spacing: -0.02em; margin: 0; }
     .title .glow { background: linear-gradient(90deg, #fafafa, #c3eab0 40%, #b8d2ff 80%); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -115,7 +114,7 @@
     .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% var(--portrait-y); }
 
     /* Sections */
-    section { padding: calc(var(--section-pad) + 28px) 0 var(--section-pad); } /* space above titles */ /* extra space above titles */
+    section { padding: calc(var(--section-pad)) 0 var(--section-pad); } /* more space above titles */ 
     .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
     .section-head h2 { margin: 0; font-size: clamp(22px, 3.5vw, 32px); letter-spacing: -0.01em; }
     .section-head p { margin: 0; color: var(--muted); }
@@ -161,12 +160,58 @@
 
     /* Utilities */
     /* Extra top spacing before Skills, Projects, Contact */
-    #experience, #projects, #contact { padding-top: calc(var(--section-pad) + 40px); }
+    #experience, #projects, #contact { padding-top: calc(var(--section-pad)); }
 
+    /* Pixel mode palette & treatment */
+    [data-pixel="on"] {
+      /* Base retro tweaks applied in both themes */
+      --radius-xl: 12px;
+      --radius-lg: 10px;
+      --radius-md: 8px;
+      font-family: 'Press Start 2P', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial !important;
+    }
+    /* Pixel DARK theme (purple) */
+    [data-pixel="on"][data-theme="dark"] {
+      --bg: #0c0417;
+      --panel: #1a0e2b;
+      --panel-strong: #23133d;
+      --text: #efe9ff;
+      --muted: #c9b8ee;
+      --accent: #a78bfa;   /* violet */
+      --accent-2: #c4b5fd;
+    }
+    /* Pixel LIGHT theme (yellow) */
+    [data-pixel="on"][data-theme="light"] {
+      --bg: #fff8cc;
+      --panel: #fff1a6;
+      --panel-strong: #ffe88a;
+      --text: #2a2200;
+      --muted: #6b5e00;
+      --accent: #ffbf00;   /* amber */
+      --accent-2: #ffd84d;
+    }
+    /* Pixel title glow per theme */
+    [data-pixel="on"][data-theme="dark"] .title .glow { background: linear-gradient(90deg, #efe9ff, #c4b5fd 50%, #a78bfa 90%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    [data-pixel="on"][data-theme="light"] .title .glow { background: linear-gradient(90deg, #3a2f00, #ffbf00 55%, #ffd84d 95%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    /* Pixel accent button per theme */
+    [data-pixel="on"][data-theme="dark"] .btn.accent { background: linear-gradient(180deg, rgba(167,139,250,0.28), rgba(167,139,250,0.14)); border-color: rgba(167,139,250,0.5); }
+    [data-pixel="on"][data-theme="light"] .btn.accent { background: linear-gradient(180deg, rgba(255,191,0,0.28), rgba(255,191,0,0.14)); border-color: rgba(255,191,0,0.5); }
+    [data-pixel="on"] .icon-btn, [data-pixel="on"] .skill-card, [data-pixel="on"] .project, [data-pixel="on"] .contact-card, [data-pixel="on"] .hero-card, [data-pixel="on"] .about .card { box-shadow: none; border-radius: var(--radius-md); border-width: 2px; }
+
+    /* Small pixel grid overlay */
+    [data-pixel="on"][data-theme="dark"]::after { content:""; position: fixed; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(167,139,250,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(167,139,250,0.06) 1px, transparent 1px); background-size: 6px 6px; mix-blend-mode: soft-light; z-index: 2; }
+    [data-pixel="on"][data-theme="light"]::after { content:""; position: fixed; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(255,216,77,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,216,77,0.06) 1px, transparent 1px); background-size: 6px 6px; mix-blend-mode: soft-light; z-index: 2; }
+
+    /* Keep photos and logos non‑pixelated */
+    [data-pixel="on"] img { image-rendering: auto; }
     .muted { color: var(--muted); }
     .divider { height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,255,0.08), transparent); margin: 20px 0; }
     .muted { color: var(--muted); }
     .divider { height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,255,0.08), transparent); margin: 20px 0; }
+
+    /* About photo card */
+    .about > .card:first-child{ padding:12px; overflow:hidden; }
+    .about > .card:first-child img{ display:block; width:100%; height:auto; object-fit:cover; border:0 !important; border-radius:inherit; }
 
     /* more spacing when screen shrinks */
     @media (max-width: 980px) {
@@ -186,14 +231,22 @@
 </head>
 
 <body data-theme="dark">
-  <!-- HEADER toggle only -->
+  <!-- HEADER  -->
   <header class="nav">
     <div class="wrap nav-inner">
       <a class="brand" href="#top" aria-label="Home">
-        <span class="brand-avatar"><img src="./assets/MauroSuit.jpeg" alt="Mauro avatar" /></span>
+        <span class="brand-avatar"><img src="./assets/MauroSuit.jpeg" alt="Mauro avatar" data-nopixel="true"/></span>
         <span>Mauro Malekshamran</span>
       </a>
-      <button id="themeToggle" class="toggle" aria-label="Switch color theme" title="Switch theme" aria-pressed="false"></button>
+      <div class="actions">
+        <button id="pixelToggle" class="toggle pixel" aria-label="Toggle Pixel Mode" title="Toggle Pixel Mode">
+          <svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true" fill="currentColor">
+            <!-- simple 8-bit star -->
+            <path d="M6 0h4v2h2v2h2v4h-2v2h-2v2H6v-2H4V8H2V4h2V2h2V0z"/>
+          </svg>
+        </button>
+        <button id="themeToggle" class="toggle" aria-label="Switch color theme" title="Switch theme" aria-pressed="false"></button>
+      </div>
     </div>
   </header>
 
@@ -202,7 +255,7 @@
     <div class="hero-inner">
       <div>
         <h1 class="title">Hello, I am <span class="glow">Mauro Malek</span></h1>
-        <p class="subtitle">ML Engineer and Data Scientist. Focused on computer vision, model evaluation, and building polished products that feel delightful.</p>
+        <p class="subtitle">ML Engineer and Data Scientist. Focused on computer vision, model evaluation, and building polished products.</p>
         <div class="cta">
           <a class="btn accent" href="./assets/MauroMalekResume.pdf" download>Download CV</a>
           <a class="btn" href="#contact">Contact Info</a>
@@ -401,39 +454,73 @@
   </footer>
 
   <script>
-    // ============================
-    // Theme toggle with localStorage + system preference 
     const root = document.body;
-    const toggleBtn = document.getElementById('themeToggle');
+    const themeBtn = document.getElementById('themeToggle');
+    const pixelBtn = document.getElementById('pixelToggle');
 
     const moonIcon = '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 1 0 9.79 9.79Z"/></svg>';
     const sunIcon  = '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5a1 1 0 0 1 1 1V6a1 1 0 1 1-2 0V3.5a1 1 0 0 1 1-1Zm0 15a1 1 0 0 1 1 1V21a1 1 0 1 1-2 0v-2.5a1 1 0 0 1 1-1ZM2.5 12a1 1 0 0 1 1-1H6a1 1 0 1 1 0 2H3.5a1 1 0 0 1-1-1Zm15 0a1 1 0 0 1 1-1H21a1 1 0 1 1 0 2h-2.5a1 1 0 0 1-1-1ZM5.64 5.64a1 1 0 0 1 1.41 0L8.1 6.69a1 1 0 1 1-1.41 1.41L5.64 7.05a1 1 0 0 1 0-1.41Zm9.86 9.86a1 1 0 0 1 1.41 0l1.06 1.06a1 1 0 1 1-1.41 1.41l-1.06-1.06a1 1 0 0 1 0-1.41ZM5.64 18.36a1 1 0 1 1 1.41-1.41l1.06 1.06a1 1 0 0 1-1.41 1.41L5.64 18.36Zm9.86-9.86a1 1 0 1 1 1.41-1.41l1.06 1.06a1 1 0 1 1-1.41 1.41L15.5 8.5Z"/></svg>';
 
-    function setIcon(theme) {
-      toggleBtn.innerHTML = theme === 'light' ? sunIcon : moonIcon;
-      toggleBtn.setAttribute('aria-pressed', theme === 'light');
+    function setThemeIcon(theme) { themeBtn.innerHTML = theme === 'light' ? sunIcon : moonIcon; themeBtn.setAttribute('aria-pressed', theme === 'light'); }
+    function applyTheme(theme) { root.setAttribute('data-theme', theme); setThemeIcon(theme); localStorage.setItem('theme', theme); }
+
+    // Pixel mode with image swapping
+    const pixelPairs = [
+      { originals: ['MauroSuit.jpeg','MauroSuit.png'], pixel: 'MauroSuitPixel.png' },
+      { originals: ['MauGrad.jpeg','MauGrad.png','MauroGrad.png'], pixel: 'MauroGradPixel.png' },
+      { originals: ['path2.png'], pixel: 'path2pixel.png' },
+      { originals: ['path4.png'], pixel: 'path4pixel.png' },
+      { originals: ['snake1.png'], pixel: 'snake1pixel.png' },
+      { originals: ['snake2.png'], pixel: 'snake2pixel.png' },
+      { originals: ['NutriSnap1.jpeg','NutriSnap1.jpg','NutriSnap1.png'], pixel: 'NutriSnap1Pixel.png' },
+      { originals: ['NutriSnap3.jpeg','NutriSnap3.jpg','NutriSnap3.png'], pixel: 'NutriSnap3Pixel.png' }
+    ];
+
+    function swapImages(enable) {
+      document.querySelectorAll('img').forEach(img => {
+        if (img.hasAttribute('data-nopixel')) return; // don't swap brand avatar, icons, etc.
+        const src = img.getAttribute('src');
+        if (!src) return;
+        const name = src.split('/').pop();
+        if (enable) {
+          if (!img.dataset.origSrc) img.dataset.origSrc = src;
+          for (const pair of pixelPairs) {
+            if (pair.originals.includes(name)) {
+              img.src = src.replace(name, pair.pixel);
+              break;
+            }
+          }
+        } else if (img.dataset.origSrc) {
+          img.src = img.dataset.origSrc;
+          delete img.dataset.origSrc;
+        }
+      });
     }
 
-    function applyTheme(theme) {
-      root.setAttribute('data-theme', theme);
-      setIcon(theme);
-      localStorage.setItem('theme', theme);
+    function applyPixel(on) {
+      if (on) {
+        root.setAttribute('data-pixel','on');
+      } else {
+        root.removeAttribute('data-pixel');
+      }
+      swapImages(on);
+      localStorage.setItem('pixel', on ? 'on' : 'off');
     }
 
-    // Initial theme: saved or system
-    const saved = localStorage.getItem('theme');
-    if (saved) {
-      applyTheme(saved);
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-      applyTheme('light');
-    } else {
-      applyTheme('dark');
-    }
+    // Initial load
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) { applyTheme(savedTheme); }
+    else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) { applyTheme('light'); }
+    else { applyTheme('dark'); }
 
-    toggleBtn.addEventListener('click', () => {
+    const savedPixel = localStorage.getItem('pixel');
+    if (savedPixel === 'on') applyPixel(true);
+
+    themeBtn.addEventListener('click', () => {
       const current = root.getAttribute('data-theme');
       applyTheme(current === 'light' ? 'dark' : 'light');
     });
+    pixelBtn.addEventListener('click', () => { applyPixel(!root.hasAttribute('data-pixel')); });
 
     // Current year
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -443,5 +530,19 @@
       document.documentElement.style.scrollBehavior = 'auto';
     }
   </script>
+  <!--
+    Save as assets/favicon.svg for an adaptive dark/light favicon.
+    --------------------------------------------------------------
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+      <style>
+        :root{ color-scheme: light dark; }
+        @media (prefers-color-scheme: dark) {.bg{fill:#0b0b0c}.fg{fill:#fff}}
+        @media (prefers-color-scheme: light){.bg{fill:#f5f5f7}.fg{fill:#111}}
+      </style>
+      <rect class="bg" width="128" height="128" rx="28"/>
+      <text class="fg" x="50%" y="58%" text-anchor="middle" dominant-baseline="middle"
+            font-size="72" font-weight="700" font-family="system-ui, -apple-system, Segoe UI, Roboto">M</text>
+    </svg>
+  -->
 </body>
 </html>
