@@ -10,7 +10,6 @@
   <meta name="author" content="Mauro Malekshamran" />
 
 <style>
-    /* Pixel font for retro mode */
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
     :root {
@@ -35,7 +34,7 @@
       --portrait-y: 45%;    /* focus of hero image */
     }
 
-    /* Light theme overrides */
+    /* Light theme */
     [data-theme="light"] {
       --bg: #f5f5f7;
       --bg-elev: rgba(0,0,0,0.05);
@@ -56,7 +55,7 @@
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       line-height: 1.5;
-      overflow-x: hidden;                 /* no horizontal scroll */
+      overflow-x: hidden;                 
       scrollbar-width: none;              /* Firefox */
       -ms-overflow-style: none;           /* IE/Edge */
     }
@@ -68,7 +67,7 @@
 
     .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--page-pad); }
 
-    /* Compact header: brand left, theme toggle right */
+    /* Compact header */
     .nav { position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(140%) blur(14px); background: linear-gradient(to bottom, rgba(10,10,11,0.6), rgba(10,10,11,0.25)); border-bottom: 1px solid rgba(255,255,255,0.06); }
     [data-theme="light"] .nav { background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.4)); border-bottom-color: rgba(0,0,0,0.06); }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
@@ -77,11 +76,11 @@
     .brand-avatar { width: 36px; height: 36px; border-radius: 50%; overflow: hidden; box-shadow: var(--shadow-tiny); }
     .brand-avatar img{ width:100%; height:100%; display:block; object-fit:cover; object-position:50% 50%; }
     .brand span { font-size: 15px; }
-    /* 8‑bit sprite near btop */
+    /* 8‑bit */
     .toggle { display: inline-grid; place-items: center; width: 40px; height: 40px; padding: 0; border-radius: 12px; background: var(--panel); border: 1px solid rgba(255,255,255,0.12); cursor: pointer; user-select: none; transition: 200ms ease; line-height: 0; color: #ffffff; }
     .toggle:hover { background: var(--panel-strong); transform: translateY(-1px); }
     .toggle svg { width: 18px; height: 18px; display: block; }
-    /* move pixel icon down a bit so its centered */
+    /* move pixel icon down */
     .toggle.pixel svg{ transform: translateY(1.5px); }
     [data-theme="light"] .toggle { border-color: rgba(0,0,0,0.12); color: #111215; }
     [data-theme="light"] .toggle { border-color: rgba(0,0,0,0.12); color: #111215; }
@@ -91,7 +90,7 @@
 
     /* Hero */
     .hero { padding: 84px 0 44px; }
-    .hero.wrap { padding-left: var(--page-pad); padding-right: var(--page-pad); } /* Same side padding as other sections */
+    .hero.wrap { padding-left: var(--page-pad); padding-right: var(--page-pad); } 
     .hero-inner { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,0.8fr); gap: var(--gutter); align-items: center; }
     .title { font-size: clamp(32px, 6vw, 56px); line-height: 1.08; letter-spacing: -0.02em; margin: 0; }
     .title .glow { background: linear-gradient(90deg, #fafafa, #c3eab0 40%, #b8d2ff 80%); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -114,7 +113,7 @@
     .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% var(--portrait-y); }
 
     /* Sections */
-    section { padding: calc(var(--section-pad)) 0 var(--section-pad); } /* more space above titles */ 
+    section { padding: calc(var(--section-pad) + 20px) 0 var(--section-pad); }  /* extra space above titles */
     .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
     .section-head h2 { margin: 0; font-size: clamp(22px, 3.5vw, 32px); letter-spacing: -0.01em; }
     .section-head p { margin: 0; color: var(--muted); }
@@ -160,11 +159,10 @@
 
     /* Utilities */
     /* Extra top spacing before Skills, Projects, Contact */
-    #experience, #projects, #contact { padding-top: calc(var(--section-pad)); }
+    #experience, #projects, #contact { padding-top: calc(var(--section-pad) + 0px); }
 
-    /* Pixel mode palette & treatment */
+    /* Pixel mode palette */
     [data-pixel="on"] {
-      /* Base retro tweaks applied in both themes */
       --radius-xl: 12px;
       --radius-lg: 10px;
       --radius-md: 8px;
@@ -182,25 +180,27 @@
     }
     /* Pixel LIGHT theme (yellow) */
     [data-pixel="on"][data-theme="light"] {
-      --bg: #fff8cc;
-      --panel: #fff1a6;
-      --panel-strong: #ffe88a;
-      --text: #2a2200;
-      --muted: #6b5e00;
-      --accent: #ffbf00;   /* amber */
-      --accent-2: #ffd84d;
+      /* Pixel LIGHT theme (blue) */
+      --bg: #eaf2ff;           /* soft blue background */
+      --panel: #dce8ff;        /* light panel */
+      --panel-strong: #cddcff; /* slightly darker panel */
+      --text: #0a1630;         /* deep navy text */
+      --muted: #38528a;        /* desaturated blue-gray */
+      --accent: #3b82f6;       /* blue accent */
+      --accent-2: #93c5fd;     /* light blue accent */
     }
     /* Pixel title glow per theme */
     [data-pixel="on"][data-theme="dark"] .title .glow { background: linear-gradient(90deg, #efe9ff, #c4b5fd 50%, #a78bfa 90%); -webkit-background-clip:text; background-clip:text; color:transparent; }
-    [data-pixel="on"][data-theme="light"] .title .glow { background: linear-gradient(90deg, #3a2f00, #ffbf00 55%, #ffd84d 95%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    [data-pixel="on"][data-theme="light"] .title .glow { background: linear-gradient(90deg, #0a1630, #3b82f6 55%, #93c5fd 95%); -webkit-background-clip:text; background-clip:text; color:transparent; }
     /* Pixel accent button per theme */
     [data-pixel="on"][data-theme="dark"] .btn.accent { background: linear-gradient(180deg, rgba(167,139,250,0.28), rgba(167,139,250,0.14)); border-color: rgba(167,139,250,0.5); }
-    [data-pixel="on"][data-theme="light"] .btn.accent { background: linear-gradient(180deg, rgba(255,191,0,0.28), rgba(255,191,0,0.14)); border-color: rgba(255,191,0,0.5); }
+    [data-pixel="on"][data-theme="light"] .btn.accent { background: linear-gradient(180deg, rgba(59,130,246,0.28), rgba(59,130,246,0.14)); border-color: rgba(59,130,246,0.5); }
     [data-pixel="on"] .icon-btn, [data-pixel="on"] .skill-card, [data-pixel="on"] .project, [data-pixel="on"] .contact-card, [data-pixel="on"] .hero-card, [data-pixel="on"] .about .card { box-shadow: none; border-radius: var(--radius-md); border-width: 2px; }
 
-    /* Small pixel grid overlay */
+    /* Subtle pixel grid overlay */
+    /* Subtle pixel grid overlay per theme */
     [data-pixel="on"][data-theme="dark"]::after { content:""; position: fixed; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(167,139,250,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(167,139,250,0.06) 1px, transparent 1px); background-size: 6px 6px; mix-blend-mode: soft-light; z-index: 2; }
-    [data-pixel="on"][data-theme="light"]::after { content:""; position: fixed; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(255,216,77,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,216,77,0.06) 1px, transparent 1px); background-size: 6px 6px; mix-blend-mode: soft-light; z-index: 2; }
+    [data-pixel="on"][data-theme="light"]::after { content:""; position: fixed; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(59,130,246,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.06) 1px, transparent 1px); background-size: 6px 6px; mix-blend-mode: soft-light; z-index: 2; }
 
     /* Keep photos and logos non‑pixelated */
     [data-pixel="on"] img { image-rendering: auto; }
@@ -209,9 +209,20 @@
     .muted { color: var(--muted); }
     .divider { height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,255,0.08), transparent); margin: 20px 0; }
 
-    /* About photo card */
+    /* About photo card: remove gap so image sits flush */
     .about > .card:first-child{ padding:12px; overflow:hidden; }
     .about > .card:first-child img{ display:block; width:100%; height:auto; object-fit:cover; border:0 !important; border-radius:inherit; }
+
+    /* Mobile overflow guards */
+    html, body { width: 100%; }
+    .wrap, section, footer { max-width: 100%; }
+    .wrap { overflow-x: clip; }
+    @supports not (overflow: clip) { .wrap { overflow-x: hidden; } }
+    .skills-grid, .projects-grid, .contact-cards { overflow-x: clip; }
+    .projects-grid > * { min-width: 0; }
+    .contact-card { min-width: 0; }
+    .contact-card > div { min-width: 0; }
+    .contact-card strong, .contact-card .muted, footer .wrap, footer .wrap .muted { overflow-wrap: anywhere; word-break: break-word; }
 
     /* more spacing when screen shrinks */
     @media (max-width: 980px) {
@@ -222,7 +233,15 @@
       .projects-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 640px) {
-      :root { --page-pad: 32px; --gutter: 26px; --section-pad: 84px; }
+      :root { --page-pad: 20px; --gutter: 20px; --section-pad: 72px; }
+      .skills-grid, .projects-grid, .contact-cards { grid-template-columns: 1fr; }
+      .carousel img { height: 200px; }
+      .btn { width: 100%; text-align: center; }
+      .wrap, .about { overflow-x: clip; }
+    }
+    /* Safety: prevent any stray horizontal overflow */
+    .wrap { overflow-x: clip; } {
+    @supports not (overflow: clip) { .wrap { overflow-x: hidden; } }
       .skills-grid, .projects-grid, .contact-cards { grid-template-columns: 1fr; }
       .carousel img { height: 200px; }
       .btn { width: 100%; text-align: center; }
@@ -231,7 +250,7 @@
 </head>
 
 <body data-theme="dark">
-  <!-- HEADER  -->
+  <!-- HEADER with theme toggle only -->
   <header class="nav">
     <div class="wrap nav-inner">
       <a class="brand" href="#top" aria-label="Home">
@@ -255,7 +274,7 @@
     <div class="hero-inner">
       <div>
         <h1 class="title">Hello, I am <span class="glow">Mauro Malek</span></h1>
-        <p class="subtitle">ML Engineer and Data Scientist. Focused on computer vision, model evaluation, and building polished products.</p>
+        <p class="subtitle">ML Engineer and Data Scientist. Focused on computer vision, model evaluation, and building polished apps.</p>
         <div class="cta">
           <a class="btn accent" href="./assets/MauroMalekResume.pdf" download>Download CV</a>
           <a class="btn" href="#contact">Contact Info</a>
@@ -328,7 +347,7 @@
   <section id="experience" class="wrap">
     <div class="section-head">
       <h2>Skills</h2>
-      <p class="muted">Explore my toolkit</p>
+      <p class="muted">Explore</p>
     </div>
 
     <div class="skills-grid">
@@ -374,7 +393,7 @@
   <section id="projects" class="wrap">
     <div class="section-head">
       <h2>Projects</h2>
-      <p class="muted">Browse my recent work</p>
+      <p class="muted">Browse</p>
     </div>
 
     <div class="projects-grid">
